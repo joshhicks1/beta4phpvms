@@ -1,0 +1,80 @@
+{
+    "name": "sebastiaanluca/laravel-helpers",
+    "type": "library",
+    "description": "An extensive set of Laravel framework helper functions and collection macros.",
+    "keywords": [
+        "laravel",
+        "helpers",
+        "collections",
+        "macros"
+    ],
+    "homepage": "https://github.com/sebastiaanluca/laravel-helpers",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sebastiaan Luca",
+            "email": "hello@sebastiaanluca.com",
+            "homepage": "https://www.sebastiaanluca.com",
+            "role": "Author"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "laravel/framework": "5.8.*|^6.0"
+    },
+    "require-dev": {
+        "kint-php/kint": "^3.1",
+        "nesbot/carbon": "^1.25|^2.0",
+        "orchestra/testbench": "3.8.*|^4.0",
+        "phpunit/phpunit": "^8.3",
+        "sebastiaanluca/php-codesniffer-ruleset": "^0.4.2"
+    },
+    "suggest": {
+        "kint-php/kint": "A powerful and modern PHP debugging tool. Required for the debug collection macros.",
+        "nesbot/carbon": "A simple PHP API extension for DateTime. Required for the carbonize collection macro."
+    },
+    "autoload": {
+        "psr-4": {
+            "SebastiaanLuca\\Helpers\\": "src"
+        },
+        "files": [
+            "src/Methods/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SebastiaanLuca\\Helpers\\Tests\\": "tests"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SebastiaanLuca\\Helpers\\Collections\\CollectionMacrosServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "composer-validate": "@composer validate --no-check-all --strict --ansi",
+        "codesniffer-check": "vendor/bin/phpcs --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1",
+        "codesniffer-fix": "vendor/bin/phpcbf --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 || exit 0",
+        "test": "vendor/bin/phpunit",
+        "test-lowest": [
+            "composer update --prefer-lowest --prefer-dist --no-interaction --ansi",
+            "@test"
+        ],
+        "test-stable": [
+            "composer update --prefer-stable --prefer-dist --no-interaction --ansi",
+            "@test"
+        ],
+        "check": [
+            "@composer-validate",
+            "@codesniffer-check",
+            "@test"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
